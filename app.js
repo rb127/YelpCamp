@@ -3,8 +3,14 @@ const app = express();
 const bodyParser = require('body-parser');
 var campgrounds = [
   {name: "Yosemite Park", img: "https://img.sunset02.com/sites/default/files/styles/4_3_horizontal_inbody_900x506/public/image/2016/09/main/yosemite-camping.jpg"},
-  {name: "Salmon Creek", img: "https://www.todaysparent.com/wp-content/uploads/2018/05/all-the-best-family-campgrounds-in-canada4.jpg"},
-  {name: "Devil's Spot", img: "https://images.haarets.co.il/image/upload/w_1496,q_auto,c_fill,f_auto/fl_any_format.preserve_transparency.progressive:none/v1557258266/1.7214604.3040260106.jpg"}
+  {name: "Salmon Creek", img: "https://www.cleverhunters.com/wp-content/uploads/2018/11/Things_To_Do_While_Camping_At_Night.jpg"},
+  {name: "Devil's Spot", img: "https://images.unsplash.com/photo-1517824806704-9040b037703b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"},
+  {name: "Yosemite Park", img: "https://img.sunset02.com/sites/default/files/styles/4_3_horizontal_inbody_900x506/public/image/2016/09/main/yosemite-camping.jpg"},
+  {name: "Salmon Creek", img: "https://www.cleverhunters.com/wp-content/uploads/2018/11/Things_To_Do_While_Camping_At_Night.jpg"},
+  {name: "Devil's Spot", img: "https://images.unsplash.com/photo-1517824806704-9040b037703b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"},
+  {name: "Yosemite Park", img: "https://img.sunset02.com/sites/default/files/styles/4_3_horizontal_inbody_900x506/public/image/2016/09/main/yosemite-camping.jpg"},
+  {name: "Salmon Creek", img: "https://www.cleverhunters.com/wp-content/uploads/2018/11/Things_To_Do_While_Camping_At_Night.jpg"},
+  {name: "Devil's Spot", img: "https://images.unsplash.com/photo-1517824806704-9040b037703b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"}
 ]
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
