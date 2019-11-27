@@ -5,6 +5,8 @@ const express = require("express"),
   Campground = require("./models/campground"),
   seedDB = require("./seed");
 
+Comment = require("./models/comments");
+
 mongoose.connect("mongodb://localhost/yelp", {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -18,7 +20,8 @@ seedDB();
 
 //home page
 app.get("/", (req, res) => {
-  res.render("home");
+  //res.render("home");
+  res.redirect("/campgrounds");
 });
 
 //Campgrounds Page
@@ -29,7 +32,7 @@ app.get("/campgrounds", (req, res) => {
     if (err) {
       console.log(err);
     } else {
-      res.render("index", { campgrounds: allCampgrounds });
+      res.render("campgrounds/index", { campgrounds: allCampgrounds });
     }
   });
 });
@@ -54,7 +57,7 @@ app.post("/campgrounds", (req, res) => {
 
 //NEW route- shows form to create new campground
 app.get("/campgrounds/new", (req, res) => {
-  res.render("new");
+  res.render("campgrounds/new");
 });
 
 //SHOW route
@@ -68,9 +71,43 @@ app.get("/campgrounds/:id", (req, res) => {
       } else {
         console.log(foundCampground);
 
-        res.render("show", { campground: foundCampground });
+        res.render("campgrounds/show", { campground: foundCampground });
       }
     });
+});
+
+//=================
+//COMMENT ROUTES
+//=================
+
+app.get("/campgrounds/:id/comments/new", (req, res) => {
+  Campground.findById(req.params.id, (err, campground) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("comments/new", { campground: campground });
+    }
+  });
+});
+
+app.post("/campgrounds/:id/comments", (req, res) => {
+  Campground.findById(req.params.id, (err, campground) => {
+    if (err) {
+      res.redirect("/campgrounds");
+    } else {
+      Comment.create(req.body.comments, (err, comment) => {
+        if (err) {
+          console.log(err);
+        } else {
+          campground.comments.push(comment);
+          campground.save();
+          console.log(campground);
+
+          res.redirect("/campgrounds/" + campground._id);
+        }
+      });
+    }
+  });
 });
 
 //setting up listening function
